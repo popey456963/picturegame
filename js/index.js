@@ -18,7 +18,7 @@ function generateImageFromSRC() {
       mask.onload = function() {
         try {
           var opac = parseInt(document.getElementById('opacity').value) / 100;
-        } except(err) {
+        } catch(err) {
           var opac = 1;
         }
           ctx.globalAlpha = opac
