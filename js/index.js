@@ -20,7 +20,7 @@ function generateImageFromSRC() {
           var img = c.toDataURL("image/png");
           document.getElementById("form").style.display = "none";
           var div = document.getElementById("image");
-          div.innerHTML = div.innerHTML + '<img alt="image" src="' + img + '" />'
+          div.innerHTML = div.innerHTML + '<img alt="image" id="base64img" src="' + img + '" />'
       }
   };
 }
@@ -46,41 +46,40 @@ function generateImageFromSRC() {
 })();
 
 $(function () {
-  var extractToken = function(hash) {
-    var match = hash.match(/access_token=(\w+)/);
-    return !!match && match[1];
-  };
+  var $img = $('#base64img');
 
-  var $post = $('.post');
-  var $msg = $('.hidden');
-  var $img = $('img');
-
-  $post.click(function() {
+  function store() {
     localStorage.doUpload = true;
     localStorage.imageBase64 = $img.attr('src').replace(/.*,/, '');
-  });
-
-  var token = extractToken(document.location.hash);
-  if (token && JSON.parse(localStorage.doUpload)) {
-    localStorage.doUpload = false;
-    $post.hide();
-    $msg.show();
-
-    $.ajax({
-      url: 'https://api.imgur.com/3/image',
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + token,
-        Accept: 'application/json'
-      },
-      data: {
-        image: localStorage.imageBase64,
-        type: 'base64'
-      },
-      success: function(result) {
-        var id = result.data.id;
-        window.location = 'https://imgur.com/gallery/' + id;
-      }
-    });
+    window.location.href = "https://api.imgur.com/oauth2/authorize?response_type=token&client_id=7a9aed4b79a9dc1";
   }
+
+  function extractToken(hash) {
+    var match = hash.match(/access_token=(\w+)/);
+    return !!match && match[1];
+  }
+
+  $(function() {
+    var token = extractToken(document.location.hash);
+    if (token && JSON.parse(localStorage.doUpload)) {
+      localStorage.doUpload = false;
+
+      $.ajax({
+        url: 'https://api.imgur.com/3/image',
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          Accept: 'application/json'
+        },
+        data: {
+          image: localStorage.imageBase64,
+          type: 'base64'
+        },
+        success: function(result) {
+          var id = result.data.id;
+          window.location = 'https://imgur.com/gallery/' + id;
+        }
+      });
+    }
+  });
 });
