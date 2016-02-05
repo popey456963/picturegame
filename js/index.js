@@ -16,6 +16,7 @@ function generateImageFromSRC() {
         mask.src = document.getElementById('mask').value
       }
       mask.onload = function() {
+          ctx.globalAlpha = (parseInt(document.getElementById('opacity').value) / 100);
           ctx.drawImage(mask, 0, 0);
           var img = c.toDataURL("image/png");
           document.getElementById("form").style.display = "none";
