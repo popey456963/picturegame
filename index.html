@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Image Masker</title>
+    <script src="js/modernizr.js" type="text/javascript"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel='stylesheet prefetch' href='css/placeholder.css'>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <div id="image"></div>
+    <form id="form">
+        <h1>Image Masker</h1>
+        <fieldset>
+            <input class="floatlabel" id="userimage" type="text" placeholder="Your Image"/>
+        </fieldset>
+        <fieldset>
+            <input class="floatlabel" id="mask" type="text" placeholder="Image Mask" value="http://i.imgur.com/yNAsDDD.png"/>
+        </fieldset>
+        <fieldset>
+            <input type="submit" id="button" value="Mask Image" />
+        </fieldset>
+    </form>
+
+    <script src='js/jquery.js'></script>
+    <script src='js/placeholder.js'></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
