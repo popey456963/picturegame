@@ -27,7 +27,11 @@
         </fieldset>
     </form>
 
-    <button onclick="localStorage.doUpload = true;localStorage.imageBase64 = $('#base64img').attr('src').replace(/.*,/, '');window.location.href = 'https://api.imgur.com/oauth2/authorize?response_type=token&client_id=7a9aed4b79a9dc1';">Upload to Imgur</button>
+    <form id="imgur" style="display: none;">
+        <fieldset>
+            <input type="submit" id="button" value="Upload to Imgur" style="margin-left:25%;"/>
+        </fieldset>
+    </form>
 
     <script src='js/jquery.js'></script>
     <script src='js/placeholder.js'></script>

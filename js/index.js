@@ -19,6 +19,7 @@ function generateImageFromSRC() {
           ctx.drawImage(mask, 0, 0);
           var img = c.toDataURL("image/png");
           document.getElementById("form").style.display = "none";
+          document.getElementById("imgur").style.display = "";
           var div = document.getElementById("image");
           div.innerHTML = div.innerHTML + '<img alt="image" id="base64img" src="' + img + '" />'
       }
@@ -37,6 +38,14 @@ function generateImageFromSRC() {
     console.log("Success");
     generateImageFromSRC();
   });
+
+  $('#imgur').submit(function(e) {
+    e.preventDefault();
+    console.log("Imguring!");
+    localStorage.doUpload = true;
+    localStorage.imageBase64 = $('#base64img').attr('src').replace(/.*,/, '');
+    window.location.href = 'https://api.imgur.com/oauth2/authorize?response_type=token&client_id=7a9aed4b79a9dc1';
+  })
   
   function clearForm(el) {
     el.reset();
