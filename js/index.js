@@ -74,7 +74,7 @@ $(function () {
     if (token && JSON.parse(localStorage.doUpload)) {
       localStorage.doUpload = false;
       document.getElementById("form").style.display = "none";
-      document.getElementById("header").style.display = "";]
+      document.getElementById("header").style.display = "";
 
       $.ajax({
         url: 'https://api.imgur.com/3/image',
