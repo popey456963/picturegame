@@ -49,6 +49,7 @@ $(function () {
   var $img = $('#base64img');
 
   function store() {
+    var $img = $('#base64img');
     localStorage.doUpload = true;
     localStorage.imageBase64 = $img.attr('src').replace(/.*,/, '');
     window.location.href = "https://api.imgur.com/oauth2/authorize?response_type=token&client_id=7a9aed4b79a9dc1";
