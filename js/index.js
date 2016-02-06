@@ -5,15 +5,15 @@ function generateImageFromSRC() {
   var mask = new Image();
   image.crossOrigin = '';
   mask.crossOrigin = '';
-  image.src = "http://cors.io/?u=" + document.getElementById('userimage').value
+  image.src = "https://crossorigin.me/" + document.getElementById('userimage').value
   image.onload = function() {
     ctx.canvas.width = image.width;
     ctx.canvas.height = image.height;
       ctx.drawImage(image, 0, 0);
       if (document.getElementById('mask').value == "") {
-        mask.src = "http://cors.io/?u=http://i.imgur.com/yNAsDDD.png";
+        mask.src = "https://crossorigin.me/http://i.imgur.com/yNAsDDD.png";
       } else {
-        mask.src = "http://cors.io/?u=" + document.getElementById('mask').value
+        mask.src = "https://crossorigin.me/" + document.getElementById('mask').value
       }
       mask.onload = function() {
         try {
