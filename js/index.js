@@ -1,4 +1,6 @@
 function generateImageFromSRC() {
+  document.getElementById("loading").style.display = "";
+  document.getElementById("form").style.display = "none";
   var c=document.getElementById("canvas");
   var ctx=c.getContext("2d");
   var image = new Image();
@@ -28,12 +30,14 @@ function generateImageFromSRC() {
           document.getElementById("imgur").style.display = "";
           var div = document.getElementById("image");
           div.innerHTML = div.innerHTML + '<img alt="image" id="base64img" src="' + img + '" />'
+          document.getElementById("loading").style.display = "none";
       }
   };
 }
 
 (function(){
   
+  document.querySelector('html').classList.toggle('loading');
   $('.floatlabel').SmartPlaceholders();
   
   var $form = $('#form'),
@@ -78,6 +82,7 @@ $(function () {
   $(function() {
     var token = extractToken(document.location.hash);
     if (token && JSON.parse(localStorage.doUpload)) {
+      document.getElementById("loading").style.display = "";
       localStorage.doUpload = false;
       document.getElementById("form").style.display = "none";
       document.getElementById("header").style.display = "";
